@@ -12,6 +12,23 @@
         </div>
         <!-- Blog entries-->
         <div class="col-lg-12">
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Category</h1>
+                        </div>
+                        <div class="modal-body">
+                            <p>Are you sure?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             @if (Model.Categories.Count() > 0)
             {
                 <div class="card p-3">
@@ -24,16 +41,21 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var item in Model.Categories)
-                            {
-                                <tr>
-                                    <td>1</td>
-                                    <td>@item.Name</td>
-                                    <td>
-                                        <a class="btn btn-primary btn-sm" href="create_edit.html" role="button">Edit</a>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
-                                    </td>
-                                </tr>
+                            @{
+                                int idx = 0;
+                                @foreach (var item in Model.Categories)
+                                {
+                                    <tr>
+                                        <td>@(++idx)</td>
+                                        <td>@item.Name</td>
+                                        <td>
+                                            <a asp-route-id="@item.Id" class="btn btn-primary btn-sm" asp-page="/category/edit"
+                                                role="button">Edit</a>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#exampleModal">Delete</button>
+                                        </td>
+                                    </tr>
+                                }
                             }
                         </tbody>
                         <tfoot>
