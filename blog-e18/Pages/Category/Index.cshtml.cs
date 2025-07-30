@@ -18,5 +18,16 @@ namespace blog_e18.Pages.Category
         {
             Categories = await _db.Categories.ToListAsync();
         }
+
+        public async Task<IActionResult> OnPost(int id)
+        {
+            var cate = await _db.Categories.FindAsync(id);
+            if (cate != null)
+            {
+                _db.Categories.Remove(cate);
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToPage();
+        }
     }
 }

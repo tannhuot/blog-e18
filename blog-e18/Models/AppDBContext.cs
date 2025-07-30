@@ -11,8 +11,8 @@ namespace blog_e18.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             var connectionString = configuration.GetConnectionString("conn");
-            //optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            // optionsBuilder.UseSqlServer(connectionString);
         }
 
         public DbSet<Category> Categories { get; set; }

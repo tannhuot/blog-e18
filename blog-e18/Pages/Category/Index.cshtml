@@ -4,6 +4,10 @@
     ViewData["Title"] = "Index";
 }
 
+@section style {
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+}
+
 <div class="container my-5">
     <div class="row">
         <div class="d-flex justify-content-between mb-2">
@@ -51,8 +55,10 @@
                                         <td>
                                             <a asp-route-id="@item.Id" class="btn btn-primary btn-sm" asp-page="/category/edit"
                                                 role="button">Edit</a>
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal">Delete</button>
+                                            <form id="@item.Id" style="display: inline;" method="post" asp-route-id="@item.Id">
+                                                <button data-id="@item.Id" class="btn btn-danger btn-sm" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal">Delete</button>
+                                            </form>
                                         </td>
                                     </tr>
                                 }
@@ -77,3 +83,24 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#datatable").DataTable();
+        });
+
+        let id = 0;
+        $("td button").click((e) => {
+            e.preventDefault();
+            id = e.currentTarget.dataset.id;
+        });
+
+        $(".modal-footer button").eq(1).click(() => {
+            $("#" + id).submit();
+        });
+    </script>
+}
