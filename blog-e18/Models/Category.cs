@@ -14,6 +14,6 @@ namespace blog_e18.Models
         public string Name { get; set; }
 
         // Navigation property
-        public IEnumerable<Post> posts { get; set; }
+        public ICollection<Post> Posts { get; set; }
     }
 }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using blog_e18.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Logging;
 
 namespace blog_e18.Pages.Category
@@ -22,6 +23,8 @@ namespace blog_e18.Pages.Category
 
         public async Task<ActionResult> OnPost()
         {
+            ModelState.Remove("Cateogry.posts");
+
             if (ModelState.IsValid)
             {
                 Console.WriteLine(Category.Name);

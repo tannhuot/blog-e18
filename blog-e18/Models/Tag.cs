@@ -13,6 +13,6 @@ namespace blog_e18.Models
         [Required]
         public string Name { get; set; }
 
-        public IEnumerable<Post> posts { get; set; }
+        public ICollection<Post> posts { get; set; }
     }
 }

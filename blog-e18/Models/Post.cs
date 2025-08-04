@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 
 namespace blog_e18.Models
 {
@@ -22,9 +23,9 @@ namespace blog_e18.Models
         // Foreign Key properties
         public int CategoryId { get; set; }
         // Navigation properties
-        public Category category { get; set; }
+        public Category Category { get; set; }
 
-        public IEnumerable<Tag> tags { get; set; }
+        public ICollection<Tag> Tags { get; set; }
 
         [NotMapped]
         public IFormFile imgFile { get; set; }
